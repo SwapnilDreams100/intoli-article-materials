@@ -5,6 +5,7 @@ import pandas as pd
 import seaborn as sns
 from keras import initializers
 from keras.datasets import mnist
+from keras.utils import np_utils
 
 from utils import (
     compile_model,
@@ -40,8 +41,8 @@ x_test = x_test.reshape(10000, 784).astype('float32')[:n_train]
 x_train /= 255
 x_test /= 255
 
-y_train = keras.utils.to_categorical(y_train, num_classes)
-y_test = keras.utils.to_categorical(y_test, num_classes)
+y_train = keras.utils.np_utils.to_categorical(y_train, num_classes)
+y_test = keras.utils.np_utils.to_categorical(y_test, num_classes)
 
 # Run the data through a few MLP models and save the activations from
 # each layer into a Pandas DataFrame.
