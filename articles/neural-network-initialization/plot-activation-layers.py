@@ -50,7 +50,9 @@ sigmas = [0.10, 0.14, 0.28]
 for stddev in sigmas:
     init = initializers.RandomNormal(mean=0.0, stddev=stddev, seed=seed)
     activation = 'relu'
-
+    activation = 'tanh'
+    activation = 'sigmoid'
+    
     model = create_mlp_model(
         n_hidden_layers,
         dim_layer,
