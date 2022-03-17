@@ -45,10 +45,10 @@ y_test = keras.utils.np_utils.to_categorical(y_test, num_classes)
 # Run the data through a few MLP models and save the activations from
 # each layer into a Pandas DataFrame.
 rows = []
-init = initializers.GlorotNormal(seed=seed)
+init = initializers.glorot_normal(seed=seed)
 #     activation = 'relu'
-activation = 'tanh'
-# activation = 'sigmoid'
+# activation = 'tanh'
+activation = 'sigmoid'
 
 model = create_mlp_model(
     n_hidden_layers,
@@ -90,4 +90,4 @@ ax.set_xlabel("Hidden Layer")
 
 plt.tight_layout()
 plt.show()
-fig.savefig('glorot.png', dpi=fig.dpi)
+fig.savefig(activation+'glorot.png', dpi=fig.dpi)
