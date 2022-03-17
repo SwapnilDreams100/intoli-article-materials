@@ -6,14 +6,12 @@ import seaborn as sns
 from keras import initializers
 from keras.datasets import mnist
 from keras.utils import np_utils
-
 from utils import (
     compile_model,
     create_mlp_model,
     get_activations,
     grid_axes_it,
 )
-
 
 seed = 10
 
@@ -50,9 +48,9 @@ rows = []
 sigmas = [0.10, 0.14, 0.28]
 for stddev in sigmas:
     init = initializers.RandomNormal(mean=0.0, stddev=stddev, seed=seed)
-    activation = 'relu'
+    # activation = 'relu'
     activation = 'tanh'
-    activation = 'sigmoid'
+    # activation = 'sigmoid'
     
     model = create_mlp_model(
         n_hidden_layers,
@@ -90,7 +88,7 @@ for sig in sigmas:
     ax.set_title('Weights Drawn from $N(\mu = 0, \sigma = {%.2f})$' % sig, fontsize=13)
 
     if sig == sigmas[1]:
-        ax.set_ylabel("ReLu Neuron Outputs")
+        ax.set_ylabel(activation+ " Neuron Outputs")
     if sig != sigmas[-1]:
         ax.set_xticklabels(())
     else:
@@ -98,3 +96,4 @@ for sig in sigmas:
 
 plt.tight_layout()
 plt.show()
+fig.savefig(activation+'.png', dpi=fig.dpi)
