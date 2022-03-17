@@ -45,10 +45,17 @@ y_test = keras.utils.np_utils.to_categorical(y_test, num_classes)
 # Run the data through a few MLP models and save the activations from
 # each layer into a Pandas DataFrame.
 rows = []
-init = initializers.glorot_normal(seed=seed)
-#     activation = 'relu'
+# init = initializers.glorot_normal(seed=seed)
+activation = 'relu'
 # activation = 'tanh'
-activation = 'sigmoid'
+# activation = 'sigmoid'
+# init_v = 'he'
+init_v = 'glorot'
+
+if init_v == 'he':
+  init = initializers.he_normal(seed=seed)
+else:
+  init = initializers.glorot_normal(seed=seed)
 
 model = create_mlp_model(
     n_hidden_layers,
@@ -83,11 +90,11 @@ sns.violinplot(x='Hidden Layer', y='Output', data=ddf, ax=ax, scale='count', inn
 ax.set_xlabel('')
 ax.set_ylabel('')
 
-ax.set_title('Weights Drawn from glorot', fontsize=13)
+ax.set_title('Weights Drawn from '+init_v, fontsize=13)
 
 ax.set_ylabel(activation+ " Neuron Outputs")
 ax.set_xlabel("Hidden Layer")
 
 plt.tight_layout()
 plt.show()
-fig.savefig(activation+'glorot.png', dpi=fig.dpi)
+fig.savefig(activation+init_v+'.png', dpi=fig.dpi)
