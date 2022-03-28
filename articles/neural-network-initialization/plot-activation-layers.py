@@ -12,6 +12,12 @@ from utils import (
     get_activations,
     grid_axes_it,
 )
+import argparse
+
+# Create the parser
+parser = argparse.ArgumentParser()# Add an argument
+parser.add_argument('--act', type=str, required=True)# Parse the argument
+args = parser.parse_args()
 
 seed = 10
 
@@ -49,7 +55,7 @@ sigmas = [0.10, 0.14, 0.28]
 for stddev in sigmas:
     init = initializers.RandomNormal(mean=0.0, stddev=stddev, seed=seed)
     # activation = 'relu'
-    activation = 'tanh'
+    activation = args.act
     # activation = 'sigmoid'
     
     model = create_mlp_model(
@@ -96,4 +102,4 @@ for sig in sigmas:
 
 plt.tight_layout()
 plt.show()
-fig.savefig(activation+'.png', dpi=fig.dpi)
+fig.savefig(activation+'_diff_dist.png', dpi=fig.dpi)
