@@ -100,4 +100,4 @@ for sig in sigmas:
 
 plt.tight_layout()
 plt.show()
-fig.savefig('standard_dist_'+activation+'.png', dpi=fig.dpi)
+fig.savefig('../standard_dist_'+activation+'.png', dpi=fig.dpi)
