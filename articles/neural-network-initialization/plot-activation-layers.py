@@ -52,11 +52,9 @@ y_test = keras.utils.np_utils.to_categorical(y_test, num_classes)
 # each layer into a Pandas DataFrame.
 rows = []
 sigmas = [0.10, 0.14, 0.28]
+activation = args.act
 for stddev in sigmas:
     init = initializers.RandomNormal(mean=0.0, stddev=stddev, seed=seed)
-    # activation = 'relu'
-    activation = args.act
-    # activation = 'sigmoid'
     
     model = create_mlp_model(
         n_hidden_layers,
@@ -102,4 +100,4 @@ for sig in sigmas:
 
 plt.tight_layout()
 plt.show()
-fig.savefig(activation+'_diff_dist.png', dpi=fig.dpi)
+fig.savefig('standard_dist_'+activation+'.png', dpi=fig.dpi)
