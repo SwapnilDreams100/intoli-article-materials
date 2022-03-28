@@ -100,4 +100,4 @@ ax.set_xlabel("Hidden Layer")
 
 plt.tight_layout()
 plt.show()
-fig.savefig(activation+init_v+'.png', dpi=fig.dpi)
+fig.savefig('../'+activation+init_v+'.png', dpi=fig.dpi)
