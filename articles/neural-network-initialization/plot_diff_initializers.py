@@ -12,6 +12,13 @@ from utils import (
     get_activations,
     grid_axes_it,
 )
+import argparse
+
+# Create the parser
+parser = argparse.ArgumentParser()# Add an argument
+parser.add_argument('--act', type=str, required=True)# Parse the argument
+parser.add_argument('--init', type=str, required=True)# Parse the argument
+args = parser.parse_args()
 
 seed = 10
 
@@ -45,12 +52,8 @@ y_test = keras.utils.np_utils.to_categorical(y_test, num_classes)
 # Run the data through a few MLP models and save the activations from
 # each layer into a Pandas DataFrame.
 rows = []
-# init = initializers.glorot_normal(seed=seed)
-activation = 'relu'
-# activation = 'tanh'
-# activation = 'sigmoid'
-# init_v = 'he'
-init_v = 'glorot'
+activation = args.act
+init_v = args.init
 
 if init_v == 'he':
   init = initializers.he_normal(seed=seed)
